@@ -1,16 +1,33 @@
 const patterns = document.querySelectorAll('.pattern');
-const result = document.getElementById('result');
+const resultBox = document.getElementById('result');
+const title = document.getElementById('personality-title');
+const description = document.getElementById('personality-description');
 
-const descriptions = {
-  creativo: 'Eres una persona creativa, imaginativa y llena de ideas originales.',
-  analítico: 'Tienes una mente lógica, te gusta resolver problemas y buscar patrones.',
-  empático: 'Eres sensible a las emociones de los demás y valoras las relaciones humanas.',
-  líder: 'Tienes iniciativa, visión y te gusta tomar decisiones con confianza.'
+const personalities = {
+  creativo: {
+    title: '🎨 Creativo',
+    description: 'Tienes una mente imaginativa, te encanta explorar ideas nuevas y expresarte de forma original.'
+  },
+  analítico: {
+    title: '📊 Analítico',
+    description: 'Eres lógico, detallista y te gusta entender cómo funcionan las cosas. Buscas patrones y soluciones.'
+  },
+  empático: {
+    title: '💞 Empático',
+    description: 'Te conectas con las emociones de los demás, valoras la armonía y te importa el bienestar colectivo.'
+  },
+  líder: {
+    title: '🧭 Líder',
+    description: 'Tienes visión, iniciativa y te gusta tomar decisiones. Inspiras a otros con tu determinación.'
+  }
 };
 
 patterns.forEach(pattern => {
   pattern.addEventListener('click', () => {
     const type = pattern.dataset.personality;
-    result.textContent = descriptions[type];
+    title.textContent = personalities[type].title;
+    description.textContent = personalities[type].description;
+    resultBox.classList.remove('hidden');
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   });
 });
